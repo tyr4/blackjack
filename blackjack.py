@@ -29,8 +29,8 @@ def matrice(symbol):
                   f"|   {symbol}   {symbol}   |", "|          8|", "`-----------'"],
                  [9, ".-----------.", "|9          |", f"|   {symbol}     {symbol} |", f"|   {symbol}     {symbol} |",
                   f"|   {symbol}  {symbol}  {symbol} |", f"|   {symbol}     {symbol} |", "|          9|", "`-----------'"],
-                 [10, ".-----------.", f"|10 {symbol}     {symbol} |", f"|   {symbol}  {symbol}  {symbol} |", f"|   {symbol}     {symbol} |",
-                  f"|   {symbol}  {symbol}  {symbol} |", f"|   {symbol}     {symbol} |", "|         10|", "`-----------'"],
+                 [10, ".-----------.", f"|10 {symbol}     {symbol} |", f"|   {symbol}     {symbol} |", f"|   {symbol}     {symbol} |",
+                  f"|   {symbol}     {symbol} |", f"|   {symbol}     {symbol} |", "|         10|", "`-----------'"],
                  [11, ".-----------.", "|J          |", f"|{symbol}    J     |", "|     A     |", "|     C     |", f"|     K    {symbol}|", "|          J|", "`-----------'"],
                  [12, ".-----------.", "|Q          |", f"|{symbol}    Q     |", "|     U     |", "|     E     |", f"|     E    {symbol}|", "|     N    Q|", "`-----------'"],
                  [13, ".-----------.", "|K          |", f"|{symbol}    K     |", "|     I     |", "|     N     |", f"|     G    {symbol}|", "|          K|", "`-----------'"],
@@ -101,8 +101,11 @@ def suma(player_cards, hidden_card):
     ace = False
     for card in player_cards:
         if card[0] == 14:
-            ace = True
-            aux = 11 if ace else 1
+            if ace:
+                aux = 1
+            else:
+                ace = True
+                aux = 11 if ace else 1
         elif card[0] in range(11, 14):
             aux = 10
         else:
@@ -347,5 +350,3 @@ while True:
     else:
         print(f"Maximum score: {max_score}")
         break
-
-
